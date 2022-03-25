@@ -12,17 +12,17 @@ from sklearn.impute import KNNImputer
 from outlier import detect_outliers
 import Normal
 import openpyxl
-uploaded_files = st.sidebar.file_uploader("Choose a CSV/xlsx file", accept_multiple_files=False,type=['xlsx','csv'])
+uploaded_files = st.sidebar.file_uploader("Choose a CSV/xlsx file", accept_multiple_files=False,type=['xlsx','csv'],key="1")
 
 df=pd.DataFrame()
 if uploaded_files != None :
 
     st.title("Preview")
-    Missing_value = st.sidebar.checkbox('Missing value treatment')
-    #Feature_encoding = st.sidebar.checkbox('Feature encoding')
-    Outlier = st.sidebar.checkbox('Outlier')
-    feature_scaling = st.sidebar.checkbox('Feature Scaling ')
-    export = st.sidebar.checkbox('Export to file')
+    Missing_value = st.sidebar.checkbox('Missing value treatment',key="2")
+    #Feature_encoding = st.sidebar.checkbox('Feature encoding',key="3")
+    Outlier = st.sidebar.checkbox('Outlier',key="4")
+    feature_scaling = st.sidebar.checkbox('Feature Scaling ',key="5")
+    export = st.sidebar.checkbox('Export to file',key="6")
 
     if uploaded_files.name.split('.')[1]=='csv':
         df=pd.read_csv(uploaded_files)
@@ -35,7 +35,7 @@ if uploaded_files != None :
         for t in df.columns:
             if df[t].dtypes in ["int64","float64"]:
                 m=["Mean","Median"]
-                outlier_menu = st.sidebar.selectbox("Select the option to be imputed for outlier treatment ", m,key="1")
+                outlier_menu = st.sidebar.selectbox("Select the option to be imputed for outlier treatment ", m,key="7")
                 p=detect_outliers(df[t])
                 rep=None
                 if outlier_menu == "Mean":
@@ -56,7 +56,7 @@ if uploaded_files != None :
                 dt[t] = dt[t].astype('float')
                 l = ["Mean", 'Median', 'Mode', ]
                 df[t] = df[t].astype('float')
-                missing_menu = st.sidebar.selectbox("Select the option to be imputed for Missing value treatment", l,key="2")
+                missing_menu = st.sidebar.selectbox("Select the option to be imputed for Missing value treatment", l,key="8")
                 if missing_menu == "Mean":
                     df[t] = df[t].fillna(dt[t].mean())
 
@@ -81,7 +81,7 @@ if uploaded_files != None :
                 if null_sum > 0:
                     st.error("Perform missing value treatment")
                 else:
-                    feature_options = st.sidebar.selectbox("Select feature scaling methods",['Standard Scalar', 'Min Max Scalar', 'Robust Scalar','Max Absolute scalar'],key="3")
+                    feature_options = st.sidebar.selectbox("Select feature scaling methods",['Standard Scalar', 'Min Max Scalar', 'Robust Scalar','Max Absolute scalar'],key="9")
                     if feature_options == 'Standard Scalar':
                         l=Normal.StandardScaler(pd.DataFrame(df[t]))
 
@@ -102,8 +102,8 @@ if uploaded_files != None :
 
     if export:
 
-        options=st.sidebar.selectbox("Enter the file to be exported",['csv','xlsx'],key="4")
-        name=st.sidebar.text_input("Enter filename")
+        options=st.sidebar.selectbox("Enter the file to be exported",['csv','xlsx'],key="10")
+        name=st.sidebar.text_input("Enter filename,"key="11")
         if options=="csv":
             data=df.to_csv().encode('utf-8')
 
@@ -119,7 +119,7 @@ if uploaded_files != None :
             writer.save()
             data = output.getvalue()
         if name != None:
-            st.sidebar.download_button(label="Download data as "+options,data=data,file_name=name+"."+options,)
+            st.sidebar.download_button(label="Download data as "+options,data=data,file_name=name+"."+options,key="12")
 
     st.table(df)
 
