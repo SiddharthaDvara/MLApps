@@ -35,12 +35,12 @@ if uploaded_files != None :
         for t in df.columns:
             if df[t].dtypes in ["int64","float64"]:
                 m=["Mean","Median"]
-                menu = st.sidebar.selectbox("Select the option to be imputed for outlier treatment ", m)
+                outlier_menu = st.sidebar.selectbox("Select the option to be imputed for outlier treatment ", m)
                 p=detect_outliers(df[t])
                 rep=None
-                if menu == "Mean":
+                if outlier_menu == "Mean":
                     rep=df[t].mean()
-                if menu == "Median":
+                if outlier_menu == "Median":
                     rep=df[t].median()
                 for t in p:
                     df.replace(to_replace=t,value=rep)
@@ -56,14 +56,14 @@ if uploaded_files != None :
                 dt[t] = dt[t].astype('float')
                 l = ["Mean", 'Median', 'Mode', ]
                 df[t] = df[t].astype('float')
-                menu = st.sidebar.selectbox("Select the option to be imputed for Missing value treatment", l)
-                if menu == "Mean":
+                missing_menu = st.sidebar.selectbox("Select the option to be imputed for Missing value treatment", l)
+                if missing_menu == "Mean":
                     df[t] = df[t].fillna(dt[t].mean())
 
-                elif menu == "Median":
+                elif missing_menu == "Median":
                     df[t] = df[t].fillna(dt[t].median())
 
-                elif menu == "Mode":
+                elif missing_menu == "Mode":
                     df[t] = df[t].fillna(dt[t].mode().iloc[0])
                 else:
                     imputer = KNNImputer(n_neighbors=3)
