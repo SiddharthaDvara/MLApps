@@ -75,27 +75,27 @@ if uploaded_files != None :
 
     if  feature_scaling:
         for t in df.columns:
-            options=""
+            feature_options=""
             if df[t].dtypes  in ["int64","float64"]:
                 null_sum = df[t].isna().sum()
                 if null_sum > 0:
                     st.error("Perform missing value treatment")
                 else:
-                    options = st.sidebar.selectbox("Select feature scaling methods",
+                    feature_options = st.sidebar.selectbox("Select feature scaling methods",
                                                    ['Standard Scalar', 'Min Max Scalar', 'Robust Scalar',
                                                     'Max Absolute scalar'])
-                    if options == 'Standard Scalar':
+                    if feature_options == 'Standard Scalar':
                         l=Normal.StandardScaler(pd.DataFrame(df[t]))
 
-                    if options == 'Robust Scalar':
+                    if feature_options == 'Robust Scalar':
                         l=Normal.RobustScaler(pd.DataFrame(df[t]))
 
 
-                    if options== 'Min Max Scalar':
+                    if feature_options== 'Min Max Scalar':
                         l=Normal.MinMaxScaler(pd.DataFrame(df[t]))
 
 
-                    if options== 'Max Absolute scalar':
+                    if feature_options== 'Max Absolute scalar':
                         l=Normal.MaxScaled(pd.DataFrame(df[t]))
                         
                     df["Feature Scaled ("+ options+")"+ t] = l
