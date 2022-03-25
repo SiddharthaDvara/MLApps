@@ -6,6 +6,7 @@ import pandas as pd
 from io import BytesIO
 from outlier import detect_outliers
 import Normal
+import openpyxl
 uploaded_files = st.sidebar.file_uploader("Choose a CSV/xlsx file", accept_multiple_files=False,type=['xlsx','csv'])
 
 df=pd.DataFrame()
