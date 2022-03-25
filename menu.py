@@ -4,6 +4,7 @@ import streamlit as st
 import pandas as pd
 #from sklearn.impute import KNNImputer
 from io import BytesIO
+subprocess.check_call([sys.executable, '-m', 'pip', 'install','scikit-learn'])
 from outlier import detect_outliers
 import Normal
 import openpyxl
