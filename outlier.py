@@ -26,5 +26,4 @@ def detect_outliers(data):
 
     return outlier
 
-t=detect_outliers(df['amount'])
-#print(t)
+
