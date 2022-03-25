@@ -1,3 +1,5 @@
+import sys
+import subprocess
 import streamlit as st
 import pandas as pd
 #from sklearn.impute import KNNImputer
