@@ -81,9 +81,7 @@ if uploaded_files != None :
                 if null_sum > 0:
                     st.error("Perform missing value treatment")
                 else:
-                    feature_options = st.sidebar.selectbox("Select feature scaling methods",
-                                                   ['Standard Scalar', 'Min Max Scalar', 'Robust Scalar',
-                                                    'Max Absolute scalar'])
+                    feature_options = st.sidebar.selectbox("Select feature scaling methods",['Standard Scalar', 'Min Max Scalar', 'Robust Scalar','Max Absolute scalar'])
                     if feature_options == 'Standard Scalar':
                         l=Normal.StandardScaler(pd.DataFrame(df[t]))
 
