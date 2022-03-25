@@ -103,7 +103,7 @@ if uploaded_files != None :
     if export:
 
         options=st.sidebar.selectbox("Enter the file to be exported",['csv','xlsx'],key="10")
-        name=st.sidebar.text_input("Enter filename,key="01")
+        name=st.sidebar.text_input("Enter filename,key="11")
         if options=="csv":
             data=df.to_csv().encode('utf-8')
 
