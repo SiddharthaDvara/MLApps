@@ -35,7 +35,7 @@ if uploaded_files != None :
         for t in df.columns:
             if df[t].dtypes in ["int64","float64"]:
                 m=["Mean","Median"]
-                outlier_menu = st.sidebar.selectbox("Select the option to be imputed for outlier treatment ", m)
+                outlier_menu = st.sidebar.selectbox("Select the option to be imputed for outlier treatment ", m,key="1")
                 p=detect_outliers(df[t])
                 rep=None
                 if outlier_menu == "Mean":
