@@ -65,9 +65,9 @@ if uploaded_files != None :
 
                 elif menu == "Mode":
                     df[t] = df[t].fillna(dt[t].mode().iloc[0])
-                #else:
-                    #imputer = KNNImputer(n_neighbors=3)
-                    #df[[t]] = imputer.fit_transform(df[[t]])
+                else:
+                    imputer = KNNImputer(n_neighbors=3)
+                    df[[t]] = imputer.fit_transform(df[[t]])
 
             elif df[t].dtypes == "object":
 
