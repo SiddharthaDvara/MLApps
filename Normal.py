@@ -1,9 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
-import graph
-path=r'C:\datasets\weather.csv'
-df=pd.read_csv(path)[['MinTemp','MaxTemp','Rainfall','Evaporation']]
+
+
 def MaxScaled(df):
     st.title("Max scaled columns")
     df_max_scaled = pd.DataFrame(df.copy())
