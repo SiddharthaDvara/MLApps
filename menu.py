@@ -46,7 +46,7 @@ if uploaded_files != None :
                 dt = df.copy()
                 dt[t] = dt[t].fillna(0)
                 dt[t] = dt[t].astype('float')
-                l = ["Mean", 'Median', 'Mode', 'KNN']
+                l = ["Mean", 'Median', 'Mode', ]
                 df[t] = df[t].astype('float')
                 menu = st.sidebar.selectbox("Select the option to be imputed for Missing value treatment", l)
                 if menu == "Mean":
