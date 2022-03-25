@@ -98,7 +98,7 @@ if uploaded_files != None :
                     if feature_options== 'Max Absolute scalar':
                         l=Normal.MaxScaled(pd.DataFrame(df[t]))
                         
-                    df["Feature Scaled ("+ options+")"+ t] = l
+                    df["Feature Scaled ("+ feature_options+")"+ t] = l
   
 
 
