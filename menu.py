@@ -56,7 +56,7 @@ if uploaded_files != None :
                 dt[t] = dt[t].astype('float')
                 l = ["Mean", 'Median', 'Mode', ]
                 df[t] = df[t].astype('float')
-                missing_menu = st.sidebar.selectbox("Select the option to be imputed for Missing value treatment", l)
+                missing_menu = st.sidebar.selectbox("Select the option to be imputed for Missing value treatment", l,key="2")
                 if missing_menu == "Mean":
                     df[t] = df[t].fillna(dt[t].mean())
 
@@ -81,7 +81,7 @@ if uploaded_files != None :
                 if null_sum > 0:
                     st.error("Perform missing value treatment")
                 else:
-                    feature_options = st.sidebar.selectbox("Select feature scaling methods",['Standard Scalar', 'Min Max Scalar', 'Robust Scalar','Max Absolute scalar'])
+                    feature_options = st.sidebar.selectbox("Select feature scaling methods",['Standard Scalar', 'Min Max Scalar', 'Robust Scalar','Max Absolute scalar'],key="3")
                     if feature_options == 'Standard Scalar':
                         l=Normal.StandardScaler(pd.DataFrame(df[t]))
 
@@ -102,7 +102,7 @@ if uploaded_files != None :
 
     if export:
 
-        options=st.sidebar.selectbox("Enter the file to be exported",['csv','xlsx'])
+        options=st.sidebar.selectbox("Enter the file to be exported",['csv','xlsx'],key="4")
         name=st.sidebar.text_input("Enter filename")
         if options=="csv":
             data=df.to_csv().encode('utf-8')
