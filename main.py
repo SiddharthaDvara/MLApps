@@ -67,6 +67,7 @@ if uploaded_files :
         for t in colums_options_number_missing:
 
             p = list(detect_outliers(df[t]))
+            st.write(p)
             rep = 0
 
             if Outlier_menu == "Mean":
