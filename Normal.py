@@ -1,7 +1,7 @@
 import pandas as pd
 #import matplotlib.pyplot as plt
 import streamlit as st
-import graph
+#import graph
 
 def MaxScaled(df):
     #st.title("Max scaled columns")
