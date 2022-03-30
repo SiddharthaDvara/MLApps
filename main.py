@@ -66,7 +66,7 @@ if uploaded_files :
         st.write("In outlier treatment,the values are imputed")
         for t in colums_options_number_missing:
 
-            p = detect_outliers(df[t])
+            p = list(detect_outliers(df[t]))
             rep = 0
 
             if Outlier_menu == "Mean":
