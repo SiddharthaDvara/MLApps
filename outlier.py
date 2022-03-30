@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
-df=pd.read_excel(r'C:\excel_and_csv_files\raw1.xlsx')
-#print(df['amount'])
+
 sample= [15,101,18,7,13,16,11,21,5,15,10,9,-22]
 #print(df)
 #print("Original data")
