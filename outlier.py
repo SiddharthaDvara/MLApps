@@ -1,15 +1,12 @@
 import numpy as np
 import pandas as pd
 
-sample= [15,101,18,7,13,16,11,21,5,15,10,9,-22]
-#print(df)
-#print("Original data")
+
 
 
 outlier=[]
 def detect_outliers(data):
     data=sorted(data)
-    #print(data,len(data))
     q1=np.percentile(data,25)
     q3=np.percentile(data, 75)
     #print(q1,q3)
@@ -24,4 +21,4 @@ def detect_outliers(data):
 
 
 
-#print(t)
+
