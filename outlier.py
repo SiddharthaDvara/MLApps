@@ -18,7 +18,7 @@ def detect_outliers(data):
     for i in data:
         if (i<lower or i>upper):
             outlier.append(i)
-
+    return outlier
 
 
 
