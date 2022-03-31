@@ -1,7 +1,11 @@
 import streamlit as st
 import pandas as pd
 import time
-
+import sys
+import subprocess
+subprocess.check_call([sys.executable, '-m', 'pip', 'install','scikit-learn'])
+subprocess.check_call([sys.executable, '-m', 'pip', 'install','openpyxl'])
+subprocess.check_call([sys.executable, '-m', 'pip', 'install','xlsxwriter'])
 from sklearn.impute import KNNImputer
 from io import BytesIO
 from outlier import detect_outliers
