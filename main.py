@@ -124,7 +124,7 @@ if uploaded_files :
 
     if export:
         spin()
-        options = st.sidebar.selectbox("Enter the file to be exported", ['csv', 'xlsx'], )
+        options = st.sidebar.selectbox("Enter the file format to be exported", ['csv', 'xlsx'], )
         name = st.sidebar.text_input("Enter filename")
         if options == "csv":
             data = df.to_csv().encode('utf-8')
