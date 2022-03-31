@@ -73,6 +73,7 @@ if uploaded_files :
                 rep = df[t].mean()
             if Outlier_menu == "Median":
                 rep = df[t].median()
+            st.write(t)
             for t in p:
                 df.replace(to_replace=t, value=rep,inplace=True)
 
