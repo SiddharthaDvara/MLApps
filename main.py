@@ -1,6 +1,10 @@
 import streamlit as st
 import pandas as pd
 import time
+import os
+path=os.getcwd()
+temp='//temp.csv'
+path=path+temp
 import sys
 import subprocess
 #subprocess.check_call([sys.executable, '-m', 'pip', 'install','scikit-learn'])
@@ -11,12 +15,16 @@ from io import BytesIO
 from outlier import detect_outliers
 import Normal
 import numpy as np
+missing_confirm = True
+outlier_confirm = True
+
 def spin():
     with st.spinner('App reloading...'):
         time.sleep(1)
 uploaded_files = st.sidebar.file_uploader("Choose a CSV/xlsx file", accept_multiple_files=False,type=['xlsx','csv'])
 df=pd.DataFrame()
 if uploaded_files :
+
     spin()
     st.title("Preview")
     Missing_value = st.sidebar.checkbox('Missing value treatment')
@@ -36,10 +44,12 @@ if uploaded_files :
         missing_value_menu=st.sidebar.selectbox("Enter option to fill numeric values",["Mean","Median","Mode","KNN"])
         colums_options_number_missing = st.sidebar.multiselect('Select numeric columns to be filled for missing value',[l for l in df.columns if df[l].dtype in ["int64","float64"]],)
         colums_options_text_missing = st.sidebar.multiselect('Select text columns to be filled for missing value',[l for l in df.columns if df[l].dtype in ["object", "str"]], )
-        dt = df.copy()
+
+        dt=df.copy()
+        dm=df.copy()
         for p in colums_options_number_missing:
 
-            dt[p] = dt[p].fillna(0)
+            dt[p] = dt[p].fillna(0.0)
             dt[p] = dt[p].astype('float')
             if missing_value_menu=="Mean":
                 df[p] = df[p].fillna(dt[p].mean())
@@ -49,20 +59,26 @@ if uploaded_files :
                 df[p] = df[p].fillna(dt[p].mode().iloc[0])
             else:
                 imputer = KNNImputer(n_neighbors=3)
-                df[[p]] = imputer.fit_transform(df[[p]])
+                dm[[p]] = imputer.fit_transform(df[[p]])
 
         for p in colums_options_text_missing:
             df[p]=df[p].fillna(" ")
+
+        #st.write(dm)
+
+
 
         #st.write(t)
 
     if Outlier:
         spin()
+        #st.write(st.session_state['Missing_value'])
         Outlier_menu = st.sidebar.selectbox("Select the option to be imputed for outlier treatment ",
                                             ["Mean", "Median"], )
         colums_options_number_missing = st.sidebar.multiselect('Select numeric columns to be filled for outlier',
                                                                [l for l in df.columns if
                                                                 df[l].dtype in ["int64", "float64"]], )
+
         st.write("In outlier treatment,the values are imputed")
         for t in colums_options_number_missing:
 
@@ -73,9 +89,8 @@ if uploaded_files :
                 rep = df[t].mean()
             if Outlier_menu == "Median":
                 rep = df[t].median()
-            if p:
-                for c in p:
-                    df.replace(to_replace=c, value=rep,inplace=True)
+            for t in p:
+                df.replace(to_replace=t, value=rep,inplace=True)
 
     if feature_scaling:
         spin()
@@ -120,12 +135,12 @@ if uploaded_files :
                 else:
                     l = Normal.MaxScaled(pd.DataFrame(df[p]))
 
-                df["Feature Scaled (" + feature_scaling_menu + ")" + p] = l
+                df[p] = l
 
     if export:
         spin()
-        options = st.sidebar.selectbox("Enter the file format to be exported", ['csv', 'xlsx'], )
-        name = st.sidebar.text_input("Enter filename")
+        options = st.sidebar.selectbox("Enter the file to be exported", ['csv', 'xlsx'], )
+        #name = st.sidebar.text_input("Enter filename")
         if options == "csv":
             data = df.to_csv().encode('utf-8')
 
@@ -141,9 +156,9 @@ if uploaded_files :
             writer.save()
             data = output.getvalue()
 
-        if name != None:
-            st.sidebar.download_button(label="Download data as "+options,data=data,file_name=name+"."+options,)
-    spin()
+
+        st.sidebar.download_button(label="Download data as "+options,data=data,file_name="export"+"."+options,)
+
 
     st.write(df)
 
