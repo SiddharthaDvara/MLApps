@@ -121,7 +121,7 @@ if uploaded_files :
                 else:
                     l = Normal.MaxScaled(pd.DataFrame(df[p]))
 
-                df["Feature Scaled (" + feature_scaling_menu + ")" + p] = l
+                df[p] = l
 
     if export:
         spin()
