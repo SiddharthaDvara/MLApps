@@ -7,6 +7,7 @@ from io import BytesIO
 from outlier import detect_outliers
 import Normal
 import numpy as np
+st.sidebar.title("Capstone project Data preprocessing tool")
 def spin():
     with st.spinner('App reloading...'):
         time.sleep(1)
