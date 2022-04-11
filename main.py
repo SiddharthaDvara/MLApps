@@ -1,12 +1,7 @@
 import streamlit as st
 import pandas as pd
 import time
-import sys
-import subprocess
-#subprocess.check_call([sys.executable, '-m', 'pip', 'install','scikit-learn'])
-#subprocess.check_call([sys.executable, '-m', 'pip', 'install','openpyxl'])
-#subprocess.check_call([sys.executable, '-m', 'pip', 'install','xlsxwriter'])
-#subprocess.check_call([sys.executable, '-m', 'pip', 'install','click<=8.0.4'])
+
 from sklearn.impute import KNNImputer
 from io import BytesIO
 from outlier import detect_outliers
@@ -24,6 +19,7 @@ if uploaded_files :
     Outlier = st.sidebar.checkbox('Outlier')
     feature_scaling = st.sidebar.checkbox('Feature Scaling ')
     export = st.sidebar.checkbox('Export to file')
+    delete_columns = st.sidebar.checkbox("Select columns to delete")
 
     if uploaded_files.name.split('.')[1]=='csv':
         df=pd.read_csv(uploaded_files)
@@ -122,7 +118,11 @@ if uploaded_files :
                     l = Normal.MaxScaled(pd.DataFrame(df[p]))
 
                 df[p] = l
-
+                
+    if delete_columns:
+        colums_options_number_missing = st.sidebar.multiselect('Select numeric columns to be dropped',[l for l in df.columns], )
+        for o in colums_options_number_missing:
+            del df[o]
     if export:
         spin()
         options = st.sidebar.selectbox("Enter the file format to be exported", ['csv', 'xlsx'], )
