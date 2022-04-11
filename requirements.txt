@@ -4,3 +4,4 @@ numpy==1.18.1
 scikit-learn==0.23
 click<=8.0.4
 xlrd==1.2.0
+XlsxWriter==3.0.3
