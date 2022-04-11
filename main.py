@@ -18,9 +18,9 @@ if uploaded_files :
     Missing_value = st.sidebar.checkbox('Missing value treatment')
     Outlier = st.sidebar.checkbox('Outlier')
     feature_scaling = st.sidebar.checkbox('Feature Scaling ')
-    export = st.sidebar.checkbox('Export to file')
     delete_columns = st.sidebar.checkbox("Select columns to delete")
-
+    export = st.sidebar.checkbox('Export to file')
+    
     if uploaded_files.name.split('.')[1]=='csv':
         df=pd.read_csv(uploaded_files)
 
