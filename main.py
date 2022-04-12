@@ -71,9 +71,9 @@ if uploaded_files :
                 rep = df[t].mean()
             if Outlier_menu == "Median":
                 rep = df[t].median()
-            if p:
-                for c in p:
-                    df.replace(to_replace=c, value=rep,inplace=True)
+            
+             for c in p:
+                 df.replace(to_replace=c, value=rep,inplace=True)
 
     if feature_scaling:
         spin()
