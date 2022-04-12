@@ -31,7 +31,7 @@ if uploaded_files :
     if Missing_value:
         spin()
         st.write("Missing value selected")
-        missing_value_menu=st.sidebar.selectbox("Enter option to fill numeric values",["Mean","Median","Mode","KNN"])
+        missing_value_menu=st.sidebar.selectbox("Enter option to fill numeric values",["Mean","Median","Mode",])#"KNN"])
         colums_options_number_missing = st.sidebar.multiselect('Select numeric columns to be filled for missing value',[l for l in df.columns if df[l].dtype in ["int64","float64"]],)
         colums_options_text_missing = st.sidebar.multiselect('Select text columns to be filled for missing value',[l for l in df.columns if df[l].dtype in ["object", "str"]], )
         dt = df.copy()
