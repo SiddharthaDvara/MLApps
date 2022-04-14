@@ -74,7 +74,7 @@ if uploaded_files :
             #st.write(p)
             if len(p)!=0:
                 for c in p:
-                    df.replace(to_replace=c, value=rep,inplace=True)
+                    df[t].mask(df[t] == c, rep, inplace=True)
 
     if feature_scaling:
         spin()
