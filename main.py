@@ -94,8 +94,8 @@ if uploaded_files :
                 rep = df[t].median()
 
             #st.write(rep)
-
-            st.write("\t".join(str(p))[0])
+            s="\t".join(p)[1:-1]
+            st.write(s)
             st.write("The outliers for "+t+" are ")
             for c in p:
                 #st.write(c)
