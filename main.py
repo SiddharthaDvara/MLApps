@@ -95,7 +95,7 @@ if uploaded_files :
 
             #st.write(rep)
 
-            st.write(p)
+            st.write("\t".join(p))
             st.write("The outliers for "+t+" are ")
             for c in p:
                 #st.write(c)
