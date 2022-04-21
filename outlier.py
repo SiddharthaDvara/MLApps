@@ -4,8 +4,9 @@ import pandas as pd
 
 
 
-outlier=[]
+
 def detect_outliers(data):
+    outlier=[]
     data=sorted(data)
     q1=np.percentile(data,25)
     q3=np.percentile(data, 75)
