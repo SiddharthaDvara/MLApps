@@ -95,10 +95,10 @@ if uploaded_files :
 
             #st.write(rep)
 
-            #st.write(p)
+            st.write(p)
             st.write("The outliers for "+t+" are ")
             for c in p:
-                st.write(c)
+                #st.write(c)
                 df[t].mask(df[t] == c, rep, inplace=True)
                 #df.replace(to_replace=t, value=rep,inplace=True)
 
