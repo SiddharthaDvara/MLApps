@@ -94,11 +94,11 @@ if uploaded_files :
                 rep = df[t].median()
 
             #st.write(rep)
-            s="\t".join(p)
-            st.write(s)
-            st.write("The outliers for "+t+" are ")
+
+            s=",".join(str(x) for x in p)
+            #st.write(" ".join(str(p)))
+            st.write("The outliers for "+t+" are "+s)
             for c in p:
-                #st.write(c)
                 df[t].mask(df[t] == c, rep, inplace=True)
                 #df.replace(to_replace=t, value=rep,inplace=True)
 
