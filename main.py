@@ -10,8 +10,8 @@ from io import BytesIO
 from outlier import detect_outliers
 import Normal
 import numpy as np
-missing_confirm = True
-outlier_confirm = True
+#missing_confirm = True
+#outlier_confirm = True
 
 def spin():
     with st.spinner('App reloading...'):
