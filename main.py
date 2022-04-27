@@ -16,6 +16,7 @@ import numpy as np
 def spin():
     with st.spinner('App reloading...'):
         time.sleep(1)
+st.sidebar.title("Data preprocessing app")
 uploaded_files = st.sidebar.file_uploader("Choose a CSV/xlsx file", accept_multiple_files=False,type=['xlsx','csv'])
 df=pd.DataFrame()
 if uploaded_files :
